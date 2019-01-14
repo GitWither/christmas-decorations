@@ -15,7 +15,7 @@ public class Main implements ModInitializer {
 	public static final String MODID = "christmas_decorations";
 	public static Block CHRISTMAS_TREE;
 	public static Block SNOWMAN;
-	public static Block CANDLE;
+	public static CandleBlock CANDLE;
 
 	@Override
 	public void onInitialize() {
