@@ -7,6 +7,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.Settings;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
 import net.minecraft.item.*;
@@ -18,7 +19,7 @@ public class Main implements ModInitializer {
 	public static final String MODID = "christmas_decorations";
 	public static Block CHRISTMAS_TREE;
 	public static Block SNOWMAN;
-	public static CandleBlock CANDLE;
+	public static Block CANDLE;
 
 	@Override
 	public void onInitialize() {
@@ -36,7 +37,7 @@ public class Main implements ModInitializer {
 		CANDLE = Registry.BLOCK.register(
 				new Identifier(MODID, "candle"),
 				new CandleBlock(
-						FabricBlockSettings.of(Material.WOOL).lightLevel(12).build()
+						FabricBlockSettings.of(Material.WOOL, MaterialColor.WHITE).lightLevel(12).build()
 				)
 		);
 
