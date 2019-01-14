@@ -1,0 +1,23 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    " # ",
+    "/S/",
+    " S "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:carved_pumpkin"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "item": "minecraft:snow_block"
+    }
+  },
+  "result": {
+    "item": "christmas_decorations:snowman",
+    "count": 1
+  }
+}

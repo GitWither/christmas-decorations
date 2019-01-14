@@ -1,0 +1,13 @@
+{
+  "id": "christmas_decorations",
+  "name": "Christmas Decorations",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "version": "1.0.0",
+  "side": "universal",
+  "initializers": [
+    "com.wither.christmas_decorations.Main"
+  ],
+  "requires": {
+    "fabric": "*"
+  }
+}
