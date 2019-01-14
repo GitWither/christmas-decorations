@@ -34,11 +34,11 @@ public class CandleBlock extends Block implements Waterloggable {
 
     public boolean activate(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, Direction direction, float float_1, float float_2, float float_3) {
        ItemStack item = playerEntity.getStackInHand(hand);
-       if(item.getItem() == Items.FLINT_AND_STEEL || item.getItem() == Items.FIRE_CHARGE) {
+       if(item.getItem() == Items.FLINT_AND_STEEL && !blockState.get(lit)) {
            if(!world.isClient) {
-               world.playSound(null, blockPos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCK, 1.0F, 1.0F);
+               world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCK, 1.0F, 1.0F);
                world.setBlockState(blockPos, this.getDefaultState().with(lit, true));
-
+               item.applyDamage(1, playerEntity);
            }
            return true;
        }
@@ -54,7 +54,7 @@ public class CandleBlock extends Block implements Waterloggable {
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState blockState, World world, BlockPos blockPos, Random random) {
         if(blockState.get(lit)) {
-            world.addParticle(ParticleTypes.FLAME, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0.0, 0.1, 0.0);
+            world.addParticle(ParticleTypes.FLAME, blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5, 0.0, 0.1, 0.0);
         }
     }
 
