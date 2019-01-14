@@ -4,8 +4,11 @@ import com.wither.christmas_decorations.block.CandleBlock;
 import com.wither.christmas_decorations.block.ChristmasTreeBlock;
 import com.wither.christmas_decorations.block.SnowmanBlock;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Block.Settings;
 import net.minecraft.block.Material;
+import net.minecraft.block.MaterialColor;
 import net.minecraft.item.*;
 import net.minecraft.item.block.BlockItem;
 import net.minecraft.util.Identifier;
@@ -22,18 +25,18 @@ public class Main implements ModInitializer {
 		CHRISTMAS_TREE = Registry.BLOCK.register(
 				new Identifier(MODID, "christmas_tree"),
 				new ChristmasTreeBlock(
-						Block.Settings.of(Material.WOOD).noCollision()
+						FabricBlockSettings.of(Material.WOOD).build()
 				));
 		SNOWMAN = Registry.BLOCK.register(
 				new Identifier(MODID, "snowman"),
 				new SnowmanBlock(
-						Block.Settings.of(Material.SNOW)
+						FabricBlockSettings.of(Material.SNOW_BLOCK).build()
 				)
 		);
 		CANDLE = Registry.BLOCK.register(
 				new Identifier(MODID, "candle"),
 				new CandleBlock(
-						Block.Settings.of(Material.WOOL)
+						FabricBlockSettings.of(Material.WOOL).lightLevel(12).build()
 				)
 		);
 
