@@ -36,7 +36,7 @@ public class CandleBlock extends Block implements Waterloggable {
        ItemStack item = playerEntity.getStackInHand(hand);
        if(item.getItem() == Items.FLINT_AND_STEEL || item.getItem() == Items.FIRE_CHARGE) {
            if(!world.isClient) {
-               world.playSound(playerEntity, blockPos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCK, 1.0F, 1.0F);
+               world.playSound(null, blockPos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCK, 1.0F, 1.0F);
                world.setBlockState(blockPos, this.getDefaultState().with(lit, true));
 
            }
