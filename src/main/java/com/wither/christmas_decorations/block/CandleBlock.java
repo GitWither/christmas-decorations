@@ -3,6 +3,7 @@ package com.wither.christmas_decorations.block;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderLayer;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,6 +29,10 @@ public class CandleBlock extends Block implements Waterloggable {
     public CandleBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateFactory.getDefaultState().with(lit, false));
+    }
+
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.CUTOUT;
     }
 
     public boolean activate(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, Direction direction, float float_1, float float_2, float float_3) {
