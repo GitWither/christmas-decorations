@@ -5,12 +5,9 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Waterloggable;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleParameters;
-import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -27,24 +24,24 @@ import java.util.Random;
 
 public class CandleBlock extends Block implements Waterloggable {
     public static final BooleanProperty lit;
+
     public CandleBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateFactory.getDefaultState().with(lit, false));
     }
 
     public boolean activate(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, Direction direction, float float_1, float float_2, float float_3) {
-       ItemStack item = playerEntity.getStackInHand(hand);
-       if(item.getItem() == Items.FLINT_AND_STEEL && !blockState.get(lit)) {
-           if(!world.isClient) {
-               world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCK, 1.0F, 1.0F);
-               world.setBlockState(blockPos, this.getDefaultState().with(lit, true));
-               item.applyDamage(1, playerEntity);
-           }
-           return true;
-       }
-       else {
-           return super.activate(blockState, world, blockPos, playerEntity, hand, direction, float_1, float_2, float_3);
-       }
+        ItemStack item = playerEntity.getStackInHand(hand);
+        if (item.getItem() == Items.FLINT_AND_STEEL && !blockState.get(lit)) {
+            if (!world.isClient) {
+                world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCK, 1.0F, 1.0F);
+                world.setBlockState(blockPos, this.getDefaultState().with(lit, true));
+                item.applyDamage(1, playerEntity);
+            }
+            return true;
+        } else {
+            return super.activate(blockState, world, blockPos, playerEntity, hand, direction, float_1, float_2, float_3);
+        }
     }
 
     public int getLuminance(BlockState blockState) {
@@ -53,7 +50,7 @@ public class CandleBlock extends Block implements Waterloggable {
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState blockState, World world, BlockPos blockPos, Random random) {
-        if(blockState.get(lit)) {
+        if (blockState.get(lit)) {
             world.addParticle(ParticleTypes.FLAME, blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5, 0.0, 0.1, 0.0);
         }
     }
