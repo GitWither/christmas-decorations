@@ -2,10 +2,7 @@ package com.wither.christmas_decorations.block;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderLayer;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Waterloggable;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -18,13 +15,13 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.minecraft.util.hit.BlockHitResult;
 
 import java.util.Random;
 
 public class CandleBlock extends Block implements Waterloggable {
-    public static final BooleanProperty lit;
+    private static final BooleanProperty lit;
 
     public CandleBlock(Settings settings) {
         super(settings);
@@ -35,7 +32,7 @@ public class CandleBlock extends Block implements Waterloggable {
         return BlockRenderLayer.CUTOUT;
     }
 
-    public boolean activate(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, Direction direction, float float_1, float float_2, float float_3) {
+    public boolean activate(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockHitResult direction) {
         ItemStack item = playerEntity.getStackInHand(hand);
         if (item.getItem() == Items.FLINT_AND_STEEL && !blockState.get(lit)) {
             if (!world.isClient) {
@@ -45,7 +42,7 @@ public class CandleBlock extends Block implements Waterloggable {
             }
             return true;
         } else {
-            return super.activate(blockState, world, blockPos, playerEntity, hand, direction, float_1, float_2, float_3);
+            return super.activate(blockState, world, blockPos, playerEntity, hand, direction);
         }
     }
 

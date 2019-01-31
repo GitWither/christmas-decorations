@@ -7,6 +7,7 @@ import com.wither.christmas_decorations.item.CandleWax;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
 import net.minecraft.item.Item;
@@ -16,10 +17,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class Main implements ModInitializer {
-    public static final String MODID = "christmas_decorations";
-    public static Block CHRISTMAS_TREE;
-    public static Block SNOWMAN;
-    public static Block CANDLE;
+    private static final String MODID = "christmas_decorations";
+    private static Block CHRISTMAS_TREE;
+    private static Block SNOWMAN;
+    private static Block CANDLE;
 
     @Override
     public void onInitialize() {
