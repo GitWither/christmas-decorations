@@ -1,8 +1,0 @@
-{
-  "required": true,
-  "package": "com.wither.christmas_decorations",
-  "compatibilityLevel": "JAVA_8",
-  "injectors": {
-    "defaultRequire": 1
-  }
-}

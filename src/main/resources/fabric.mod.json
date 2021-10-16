@@ -2,12 +2,19 @@
   "id": "christmas_decorations",
   "name": "Christmas Decorations",
   "description": "This is an example description! Tell everyone what your mod is about!",
-  "version": "1.0.0",
-  "side": "universal",
-  "initializers": [
-    "com.wither.christmas_decorations.Main"
-  ],
-  "requires": {
-    "fabric": "*"
+  "version": "${version}",
+  "environment": "*",
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "minecraft": "1.17.1"
+  },
+  "schemaVersion": 1,
+  "entrypoints": {
+    "main": [
+      "com.wither.christmas_decorations.Main"
+    ],
+    "client": [
+      "com.wither.christmas_decorations.MainClient"
+    ]
   }
 }

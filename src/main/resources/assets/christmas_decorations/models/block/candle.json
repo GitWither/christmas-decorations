@@ -2,6 +2,7 @@
 	"credit": "Made by Wither with Blockbench",
 	"elements": [
 		{
+			"rotation": {"angle": 55, "axis": "x", "origin": [8, 11, 8]},
 			"from": [6, 0, 6],
 			"to": [10, 12, 10],
 			"color": 5,
