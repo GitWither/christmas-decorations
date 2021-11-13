@@ -1,6 +1,7 @@
 package com.wither.christmas_decorations;
 
 import com.wither.christmas_decorations.block.ChristmasTreeBlock;
+import com.wither.christmas_decorations.block.SnowglobeBlock;
 import com.wither.christmas_decorations.block.SnowmanBlock;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.*;
@@ -21,6 +22,7 @@ public class Main implements ModInitializer {
 
     public static Block CHRISTMAS_TREE;
     public static Block SNOWMAN;
+    public static Block SNOWGLBOE;
 
     @Override
     public void onInitialize() {
@@ -39,6 +41,12 @@ public class Main implements ModInitializer {
                         AbstractBlock.Settings.of(Material.SNOW_BLOCK).nonOpaque()
                 )
         );
+        SNOWGLBOE = Registry.register(
+                Registry.BLOCK,
+                new Identifier(MOD_ID, "snowglobe"),
+                new SnowglobeBlock(
+                        AbstractBlock.Settings.of(Material.WOOD).nonOpaque()
+                ));
 
         Registry.register(
                 Registry.ITEM,
@@ -50,5 +58,17 @@ public class Main implements ModInitializer {
                 Registry.BLOCK.getId(SNOWMAN),
                 new BlockItem(SNOWMAN, new Item.Settings().group(ItemGroup.DECORATIONS))
         );
+        Registry.register(Registry.ITEM,
+                new Identifier(MOD_ID, "snowglobe"),
+                new BlockItem(SNOWGLBOE, new Item.Settings().group(ItemGroup.DECORATIONS)))
+        ;
+
+        Registry.register(
+                Registry.ITEM,
+                new Identifier(MOD_ID, "christmas_ornament"),
+                new Item(new Item.Settings().group(ItemGroup.MISC).maxCount(1))
+        );
+
+        LOGGER.info("Christmas Decorations initialized!");
     }
 }

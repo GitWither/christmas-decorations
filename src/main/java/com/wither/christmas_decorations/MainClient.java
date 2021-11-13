@@ -10,5 +10,6 @@ public class MainClient implements ClientModInitializer {
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(Main.CHRISTMAS_TREE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Main.SNOWMAN, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Main.SNOWGLBOE, RenderLayer.getCutout());
     }
 }

@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "christmas_decorations:item/candle_wax"
-  }
-}

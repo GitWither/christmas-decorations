@@ -1,6 +1,5 @@
 {
   "block.christmas_decorations.christmas_tree": "Christmas Tree",
   "block.christmas_decorations.snowman": "Snowman",
-  "block.christmas_decorations.candle": "Candle",
-  "item.christmas_decorations.candle_wax": "Candle Wax"
+  "item.christmas_decorations.christmas_ornament": "Christmas Ornament"
 }
