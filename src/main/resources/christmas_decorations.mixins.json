@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.wither.christmas_decorations.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
