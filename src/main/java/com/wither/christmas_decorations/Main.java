@@ -3,12 +3,11 @@ package com.wither.christmas_decorations;
 import com.wither.christmas_decorations.block.ChristmasTreeBlock;
 import com.wither.christmas_decorations.block.SnowglobeBlock;
 import com.wither.christmas_decorations.block.SnowmanBlock;
+import com.wither.christmas_decorations.item.EarmuffsArmorMaterial;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.*;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.BlockItem;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
@@ -24,10 +23,13 @@ public class Main implements ModInitializer {
     public static Block SNOWMAN;
     public static Block SNOWGLBOE;
 
+    public static final ArmorMaterial EARMUFFS_ARMOR_MATERIAL = new EarmuffsArmorMaterial();
+
     @Override
     public void onInitialize() {
         LOGGER.info("Initializing Christmas Decorations!");
 
+        //===BLOCKS===
         CHRISTMAS_TREE = Registry.register(
                 Registry.BLOCK,
                 new Identifier(MOD_ID, "christmas_tree"),
@@ -48,6 +50,7 @@ public class Main implements ModInitializer {
                         AbstractBlock.Settings.of(Material.WOOD).nonOpaque()
                 ));
 
+        //===BLOCK ITEMS===
         Registry.register(
                 Registry.ITEM,
                 Registry.BLOCK.getId(CHRISTMAS_TREE),
@@ -63,10 +66,17 @@ public class Main implements ModInitializer {
                 new BlockItem(SNOWGLBOE, new Item.Settings().group(ItemGroup.DECORATIONS)))
         ;
 
+        //===ITEMS===
         Registry.register(
                 Registry.ITEM,
                 new Identifier(MOD_ID, "christmas_ornament"),
                 new Item(new Item.Settings().group(ItemGroup.MISC).maxCount(1))
+        );
+
+        Registry.register(
+                Registry.ITEM,
+                new Identifier(MOD_ID, "earmuffs"),
+                new ArmorItem(EARMUFFS_ARMOR_MATERIAL, EquipmentSlot.HEAD, new Item.Settings().group(ItemGroup.DECORATIONS).maxCount(1))
         );
 
         LOGGER.info("Christmas Decorations initialized!");
