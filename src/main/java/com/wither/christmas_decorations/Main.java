@@ -23,6 +23,9 @@ public class Main implements ModInitializer {
     public static Block SNOWMAN;
     public static Block SNOWGLBOE;
 
+    public static Item CHRISTMAS_ORNAMENT;
+    public static Item EARMUFFS;
+
     public static final ArmorMaterial EARMUFFS_ARMOR_MATERIAL = new EarmuffsArmorMaterial();
 
     @Override
@@ -67,13 +70,13 @@ public class Main implements ModInitializer {
         ;
 
         //===ITEMS===
-        Registry.register(
+        CHRISTMAS_ORNAMENT = Registry.register(
                 Registry.ITEM,
                 new Identifier(MOD_ID, "christmas_ornament"),
                 new Item(new Item.Settings().group(ItemGroup.MISC).maxCount(1))
         );
 
-        Registry.register(
+        EARMUFFS = Registry.register(
                 Registry.ITEM,
                 new Identifier(MOD_ID, "earmuffs"),
                 new ArmorItem(EARMUFFS_ARMOR_MATERIAL, EquipmentSlot.HEAD, new Item.Settings().group(ItemGroup.DECORATIONS).maxCount(1))

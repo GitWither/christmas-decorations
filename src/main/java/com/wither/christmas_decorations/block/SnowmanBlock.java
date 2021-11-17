@@ -1,19 +1,30 @@
 package com.wither.christmas_decorations.block;
 
+import com.wither.christmas_decorations.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
@@ -47,6 +58,33 @@ public class SnowmanBlock extends Block {
     @Override
     public VoxelShape getRaycastShape(BlockState state, BlockView world, BlockPos pos) {
         return SHAPE;
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        ItemStack handStack = player.getStackInHand(hand);
+        if (player.canModifyBlocks() && handStack.isOf(Main.EARMUFFS) && !state.get(HAS_EARMUFFS)) {
+            world.setBlockState(pos, state.with(HAS_EARMUFFS, true));
+            //lol add something for sculk why not lol
+            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos);
+            world.playSound(null, pos, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, SoundCategory.BLOCKS, 1, 1);
+            handStack.decrement(1);
+            return ActionResult.success(world.isClient);
+        }
+        else if (player.canModifyBlocks() && state.get(HAS_EARMUFFS)) {
+            world.setBlockState(pos, state.with(HAS_EARMUFFS, false));
+            player.giveItemStack(Main.EARMUFFS.getDefaultStack());
+            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos);
+            return ActionResult.success(world.isClient);
+        }
+        return ActionResult.PASS;
+    }
+
+    @Override
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        BlockPos down = pos.down();
+        BlockState blockBelow = world.getBlockState(down);
+        return !blockBelow.getCollisionShape(world, down).getFace(Direction.UP).isEmpty() || blockBelow.isSideSolidFullSquare(world, down, Direction.UP);
     }
 
     @Nullable
