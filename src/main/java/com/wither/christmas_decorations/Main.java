@@ -6,14 +6,20 @@ import com.wither.christmas_decorations.block.SnowmanBlock;
 import com.wither.christmas_decorations.item.EarmuffsArmorMaterial;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.*;
+import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.BlockRenderView;
+import net.minecraft.world.BlockView;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Main implements ModInitializer {
+    //TODO: Add loot tables for blocks
+
     private static final String MOD_ID = "christmas_decorations";
 
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
@@ -31,13 +37,19 @@ public class Main implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER.info("Initializing Christmas Decorations!");
-
         //===BLOCKS===
         CHRISTMAS_TREE = Registry.register(
                 Registry.BLOCK,
                 new Identifier(MOD_ID, "christmas_tree"),
                 new ChristmasTreeBlock(
-                        AbstractBlock.Settings.of(Material.WOOD).nonOpaque()
+                        AbstractBlock.Settings.of(Material.WOOD)
+                                .nonOpaque()
+                                .luminance((state) -> {
+                                    return 1;
+                                })
+                                .emissiveLighting((state, world, pos) -> {
+                                    return state.get(ChristmasTreeBlock.HAS_ORNAMENT);
+                                })
                 ));
         SNOWMAN = Registry.register(
                 Registry.BLOCK,
@@ -50,7 +62,7 @@ public class Main implements ModInitializer {
                 Registry.BLOCK,
                 new Identifier(MOD_ID, "snowglobe"),
                 new SnowglobeBlock(
-                        AbstractBlock.Settings.of(Material.WOOD).nonOpaque()
+                        AbstractBlock.Settings.of(Material.GLASS).nonOpaque()
                 ));
 
         //===BLOCK ITEMS===
