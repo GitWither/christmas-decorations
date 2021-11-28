@@ -1,5 +1,6 @@
 package com.wither.christmas_decorations.block;
 
+import net.minecraft.SharedConstants;
 import net.minecraft.block.*;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -35,7 +36,7 @@ public class SnowglobeBlock extends Block {
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         //Here I'm assuming that any other collisions aren't from entities. I don't know whether there are other collision types.
-        if (context instanceof EntityShapeContext && ((EntityShapeContext)context).getEntity().isEmpty()) {
+        if (context instanceof EntityShapeContext && ((EntityShapeContext)context).getEntity() == null) {
             return VoxelShapes.empty();
         }
         else return this.getOutlineShape(state, world, pos, context);
