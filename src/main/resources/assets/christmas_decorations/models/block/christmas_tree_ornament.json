@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+    "parent": "christmas_decorations:block/christmas_tree",
+	"textures": {
+		"0": "christmas_decorations:block/christmas_tree_ornaments",
+		"particle": "christmas_decorations:block/christmas_tree_ornaments"
+	}
+}

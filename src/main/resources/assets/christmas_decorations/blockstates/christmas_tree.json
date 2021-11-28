@@ -1,5 +1,6 @@
 {
   "variants": {
-    "": {"model": "christmas_decorations:block/christmas_tree" }
+    "has_ornament=false": {"model": "christmas_decorations:block/christmas_tree" },
+    "has_ornament=true": {"model": "christmas_decorations:block/christmas_tree_ornament" }
   }
 }
